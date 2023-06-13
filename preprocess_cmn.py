@@ -25,6 +25,6 @@ if __name__ == "__main__":
 
         filelist_base, filelist_ext = path.splitext(filelist)
 
-        new_filelist = filelist_base + f".{args.postfix}." + filelist_ext
+        new_filelist = filelist_base + f".{args.postfix}" + filelist_ext
         with open(new_filelist, "w", encoding="utf-8") as f:
             f.writelines(["|".join(x) + "\n" for x in filepaths_and_text])

@@ -9,11 +9,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="013b7904-665c-4a33-8e2d-6cde846a0f02" name="Changes" comment="" />
+    <list default="true" id="013b7904-665c-4a33-8e2d-6cde846a0f02" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/text/mandarin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mel_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/mel_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess_cmn.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess_cmn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/cleaners.py" beforeDir="false" afterPath="$PROJECT_DIR$/text/cleaners.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text/symbols.py" beforeDir="false" afterPath="$PROJECT_DIR$/text/symbols.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,9 +42,12 @@
     <scope name="All except ignored" pattern="(file[vits]:*||file[vits]:monotonic_align/*)&amp;&amp;!file:monotonic_align/core.c||file[vits]:text/*||file[vits]:scripts/*" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2R97H4VXRcLuXHtGF1DffaecRlm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,11 +58,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "my",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "last.edited.regexp": "Sample Text",
     "last_opened_file_path": "D:/dist/vits/train.py",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.general"
+    "settings.editor.selected.configurable": "debugger.dataViews.python.type.renderers"
   }
 }]]></component>
   <component name="RunManager">
@@ -51,7 +72,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="PYTHONUNBUFFERED" value="1 PYTORCH_CUDA_ALLOC_CONF=backend:cudaMallocAsync" />
+        <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="D:\dist\vits\venv\Scripts\python.exe" />
       <option name="SDK_NAME" value="Python 3.10 (vits)" />
@@ -83,20 +104,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/data_utils.py</url>
-          <line>224</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/data_utils.py</url>
-          <line>78</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/transforms.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="9" />
+          <line>74</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
