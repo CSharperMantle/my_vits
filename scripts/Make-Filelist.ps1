@@ -86,12 +86,12 @@ $txt_files = $files | Where-Object { $_.Extension.ToLower() -eq ".txt" }
 
 $wav_files_count = $wav_files | Measure-Object | ForEach-Object { $_.Count }
 $i = 0
-Write-Progress -Activity "Processing" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
+Write-Progress -Activity "Composing filelist" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
 
 foreach ($f in $wav_files) {
     $i += 1
     $escaped_wav_name = [regex]::escape($f.BaseName)
-    Write-Progress -Activity "Processing" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
+    Write-Progress -Activity "Composing filelist" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
     $matched_txt = $txt_files | Where-Object { $_.BaseName.Trim() -cmatch "^$escaped_wav_name.*$" }
     $matched_txt_count = $matched_txt | Measure-Object | ForEach-Object { $_.Count }
     if ($matched_txt_count -gt 1) {
