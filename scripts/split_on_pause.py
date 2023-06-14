@@ -28,7 +28,7 @@ import soundfile as sf
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--path", required=True)
 parser.add_argument("-w", "--win-len-sec", default=1.0, type=float)
-parser.add_argument("-s", "--threshold", default=50, type=int)
+parser.add_argument("-t", "--threshold", default=50, type=int)
 args = parser.parse_args()
 
 in_wav_path = args.path
