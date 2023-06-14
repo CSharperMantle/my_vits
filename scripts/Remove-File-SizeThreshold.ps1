@@ -1,21 +1,23 @@
 <#
 .SYNOPSIS
-    Extract audio tracks in WAV from video files with FFMPEG.
+    Remove files smaller than a given threshold.
 
 .DESCRIPTION
-    This script iterates over all files in given path and feeds them
-    to FFMPEG. Extracted WAV contents are placed next to original
-    video with the same base name. No format check is performed
-    during this process.
+    This script iterates over all files in target path and compares
+    their sizes with provided threshold in KB (1024 bytes). It then
+    removes all files whose size is smaller than the threshold.
 
 .NOTES
-    `ffmpeg.exe` should be in `$env:PATH` for this script to run
-    normally.
+    Hidden files and readonly files are not removed. This script does
+    NOT move files to Recycle Bin.
 
     This script is licensed under an MIT license.
     Copyright (c) 2023 Rong Bao <baorong2005@126.com>
+
 .PARAMETER Path
-    Working path to find video files in.
+    Working path.
+.PARAMETER SizeThresholdKB
+    Threshold of file size in KB (1024 bytes).
 .PARAMETER WhatIf
     Show operations without actually running.
 #>
@@ -52,7 +54,12 @@ param (
     [string]
     $Path,
 
-    [Parameter(Position = 1)]
+    [Parameter(Mandatory = $true, Position = 1)]
+    [Alias("ST")]
+    [uint]
+    $SizeThresholdKB,
+
+    [Parameter(Position = 2)]
     [Alias("WI")]
     [switch]
     $WhatIf
@@ -60,12 +67,15 @@ param (
 
 $files = Get-ChildItem -Path $Path -File
 foreach ($f in $files) {
-    $out_path = "$Path\$($f.BaseName).wav"
-
+    $sizeKB = $f.Length / 1KB
+    if ($sizeKB -ge $SizeThresholdKB) {
+        Write-Verbose "$($f.FullName): $sizeKB >= $SizeThresholdKB, skipping"
+        continue
+    }
     if ($WhatIf) {
-        Write-Output "ffmpeg.exe -i $($f.FullName) -vn $out_path"
+        Write-Output "Remove-Item -Path $($f.FullName)"
     }
     else {
-        ffmpeg.exe -i $($f.FullName) -vn $out_path
+        Remove-Item -Path $($f.FullName)
     }
 }

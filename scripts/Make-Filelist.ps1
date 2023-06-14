@@ -13,7 +13,7 @@
     WAV files having multiple transcriptions will be skipped. Having only one
     contentless transcription will also cause the WAV file to be skipped.
 
-    This script is licensed under a MIT license.
+    This script is licensed under an MIT license.
     Copyright (c) 2023 Rong Bao <baorong2005@126.com>
 
 .PARAMETER Path
@@ -52,39 +52,30 @@ param (
     [Parameter(Mandatory = $true,
         Position = 0,
         ValueFromPipeline = $true,
-        ValueFromPipelineByPropertyName = $true,
-        HelpMessage = "Working path")]
+        ValueFromPipelineByPropertyName = $true)]
     [Alias("PSPath")]
     [ValidateNotNullOrEmpty()]
     [string]
     $Path,
 
-    [Parameter(Mandatory = $true,
-        Position = 1,
-        HelpMessage = "Name for new filelist")]
+    [Parameter(Mandatory = $true, Position = 1)]
     [Alias("FN")]
     [ValidateNotNullOrEmpty()]
     [string]
     $FilelistName,
 
-    [Parameter(Mandatory = $false,
-        Position = 2,
-        HelpMessage = "Delimiter")]
+    [Parameter(Mandatory = $false, Position = 2)]
     [Alias("D")]
     [ValidateNotNullOrEmpty()]
     [char]
     $Delim = "|",
 
-    [Parameter(Mandatory = $false,
-        Position = 3,
-        HelpMessage = "Character for indicating punctuation")]
+    [Parameter(Mandatory = $false, Position = 3)]
     [Alias("PC")]
     [ValidateNotNullOrEmpty()]
     [char]
     $PunctChar = ","
 )
-
-Write-Output $PunctChar
 
 $filelist_items = [System.Collections.Generic.List[string]]::new()
 
@@ -92,8 +83,15 @@ $files = Get-ChildItem -Path $Path -File
 
 $wav_files = $files | Where-Object { $_.Extension.ToLower() -eq ".wav" }
 $txt_files = $files | Where-Object { $_.Extension.ToLower() -eq ".txt" }
+
+$wav_files_count = $wav_files | Measure-Object | ForEach-Object { $_.Count }
+$i = 0
+Write-Progress -Activity "Processing" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
+
 foreach ($f in $wav_files) {
+    $i += 1
     $escaped_wav_name = [regex]::escape($f.BaseName)
+    Write-Progress -Activity "Processing" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
     $matched_txt = $txt_files | Where-Object { $_.BaseName.Trim() -cmatch "^$escaped_wav_name.*$" }
     $matched_txt_count = $matched_txt | Measure-Object | ForEach-Object { $_.Count }
     if ($matched_txt_count -gt 1) {
