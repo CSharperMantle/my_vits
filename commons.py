@@ -1,4 +1,5 @@
 import math
+import typing
 
 import torch
 from torch.nn import functional as F
@@ -12,12 +13,6 @@ def init_weights(m, mean=0.0, std=0.01):
 
 def get_padding(kernel_size, dilation=1):
     return int((kernel_size * dilation - dilation) / 2)
-
-
-def convert_pad_shape(pad_shape):
-    l = pad_shape[::-1]
-    pad_shape = [item for sublist in l for item in sublist]
-    return pad_shape
 
 
 def intersperse(lst, item):
@@ -91,6 +86,7 @@ def cat_timing_signal_1d(x, min_timescale=1.0, max_timescale=1.0e4, axis=1):
     return torch.cat([x, signal.to(dtype=x.dtype, device=x.device)], axis)
 
 
+@torch.jit.script
 def subsequent_mask(length):
     mask = torch.tril(torch.ones(length, length)).unsqueeze(0).unsqueeze(0)
     return mask
@@ -124,12 +120,11 @@ def sequence_mask(length, max_length=None):
     return x.unsqueeze(0) < length.unsqueeze(1)
 
 
-def generate_path(duration, mask):
+def generate_path(duration: torch.Tensor, mask: torch.Tensor):
     """
-  duration: [b, 1, t_x]
-  mask: [b, 1, t_y, t_x]
-  """
-    device = duration.device
+    duration: [b, 1, t_x]
+    mask: [b, 1, t_y, t_x]
+    """
 
     b, _, t_y, t_x = mask.shape
     cum_duration = torch.cumsum(duration, -1)
