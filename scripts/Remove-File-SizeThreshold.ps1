@@ -68,7 +68,6 @@ param (
 $files = Get-ChildItem -Path $Path -File
 $files_count = $files | Measure-Object | ForEach-Object { $_.Count }
 $i = 0
-Write-Progress -Activity "Running" -Status "$i in $files_count" -PercentComplete $($i / $files_count * 100)
 
 foreach ($f in $files) {
     $i += 1

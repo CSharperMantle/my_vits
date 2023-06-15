@@ -86,7 +86,6 @@ $txt_files = $files | Where-Object { $_.Extension.ToLower() -eq ".txt" }
 
 $wav_files_count = $wav_files | Measure-Object | ForEach-Object { $_.Count }
 $i = 0
-Write-Progress -Activity "Composing filelist" -Status "$i in $wav_files_count" -PercentComplete $($i / $wav_files_count * 100)
 
 foreach ($f in $wav_files) {
     $i += 1
